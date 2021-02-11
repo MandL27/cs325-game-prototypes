@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Hello! Amaze!</title>
+<title>Coin Sniper</title>
 <style>
 body
 {
@@ -19,72 +19,70 @@ body
 <body>
 <div id="game"></div>
 <div id="readme">
-<h2>Your game title</h2>
+<h2>Coin Sniper</h2>
 
 <ul>
 <li><strong>Originality:</strong>
-What is original about your game?
+Unlike some "click the objects that appear" games, this one continually adds "hazard" circles that end the game once clicked, creating a bullet hell feel.
 </li>
 
 <li><strong>Technical Merit:</strong>
-What is interesting about your game technology?
+True to the challenge I chose to use, no objects are ever destroyed over the course of play. Coins move after being clicked, and every coin click spawns a new hazard.
 </li>
 
 <li><strong>Prototype Postmortem:</strong>
-What did you learn from this prototype?
-What was the easiest or hardest part of making it?
+I learned that click-and-drag support in Phaser is sketchy at best, forcing me to abandon the old idea I had in favor of something simpler and easier to implement. Setting up randomized position and direction was easy, but getting screen wrap was a workaround for bouncing off the screen bounds not working as I wanted.
 </li>
 
 <li><strong>Prototype Assets:</strong>
-Did you make your prototype assets from scratch? Did you borrow them? Cite your sources here.
 <ul>
-<li>Bouncing Phaser image: <a href="https://phaser.io/download/logo">Phaser logo</a></li>
+<li>Red and yellow circles "drawn" by me</li>
+<li>velocityFromAngle for getting angle vectors idea from <a href="https://blog.ourcade.co/posts/2020/fire-bullets-from-facing-direction-phaser-3/">here</a></li>
 </ul>
 </li>
 
 <li><strong>Prototype Closest Other Game:</strong>
-Which other game most closely resembles your game? If you are borrowing code from a Phaser Example, you must say so here. If you borrow code from elsewhere, you must say so here.
+The game is nearest to "clicker"-type idle games early on, but as the game progresses it starts to resemble bullet hell games like Touhou. 
 </li>
 
 <li><strong>High Concept:</strong>
-A one-sentence summary of your game.
+Click coins and avoid red dots.
 </li>
 
 <li><strong>Theme:</strong>
-State which of the Storymatic themes you used.
+"Things must only be added as the game progresses, not removed."
 </li>
 
 <li><strong>Mandated Variety:</strong>
-State which input, randomness, genre, and play style you used in this prototype.
+Mouse, a lot of randomness, Collector, puzzle
 </li>
 
 <li><strong>Prototype Goal:</strong>
-What game mechanic is this prototype evaluating?
+Test precision clicking as more and more of the game screen becomes dangerous to click on.
 </li>
 
 <li><strong>Player Experience Goals:</strong>
-What experience do you want players to have when playing your game?
+I want them to have a level of confidence when few coins are in play, quickly degrading into panic as the hazards continue multiplying and their score grows ever higher.
 </li>
 
 <li><strong>Gameplay:</strong>
-A paragraph describing the actions the player can perform, the system dynamics, and the core mechanic. Include a concise explanation of the prototype’s inputs and their expected effects (how to play). You can also describe game play that is not in the prototype. You may include mock-up images for parts of the game not in the prototype.
+The controls are extremely simple: use the mouse to click on coins as they fly across the playfield. Every time a coin is clicked on, it moves elsewhere and a new hazard appears. Clicking a hazard instantly ends the game and displays your score. Refresh the page to play again.
 </li>
 
 <li><strong>Strategies:</strong>
-What player strategies do you expect will be effective at playing this game?
+Patience and precision are the key strategies for playing this game effectively.
 </li>
 
 <li><strong>Story/Setting/Premise:</strong>
-A paragraph about the world your game is set in and who the characters are. What makes the game world and its occupants unique and interesting? Do the tokens represent something? If the game has a backstory, mention it here. If the game is abstract, then say so.
-How will the dramatic tension interact with the gameplay tension?
+This is an abstract game, relying on easily recognizable shapes (coins = good) and colors (red = danger). There's no particular narrative to this game, but I made sure to make the gameplay fun and potentially addictive to make up for it.
 </li>
 
 <li><strong>Target Audience:</strong>
-A single sentence that describes the demographic you're trying to reach.
+Players who want something simple, yet challenging should enjoy this game.
 </li>
 
 <li><strong>Play Time:</strong>
-How long does your game take to play?
+Sessions could theoretically go on forever, but at most a session should take 3-5 minutes.
 </li>
 
 </ul>

@@ -16,41 +16,107 @@ class MyScene extends Phaser.Scene {
     constructor() {
         super();
         
-        this.bouncy = null;
+        this.coins = [null];
+        this.hazards = [null];
+        this.distance = 0;
+        this.score = 0;
+        this.lost = false;
     }
     
     preload() {
-        // Load an image and call it 'logo'.
-        this.load.image( 'logo', 'assets/EndingZoomSmall.png' );
+        // Load an image and call it 'disc'.
+        this.load.image( 'coin', 'assets/yellow.png' );
+        // Load another image and call it 'hazard'.
+        this.load.image( 'hazard', 'assets/red.png' );
     }
     
     create() {
-        // Create a sprite at the center of the screen using the 'logo' image.
-        this.bouncy = this.physics.add.sprite( this.cameras.main.centerX, this.cameras.main.centerX, 'logo' );
-        
-        // Make it bounce off of the world bounds.
-        this.bouncy.body.collideWorldBounds = true;
-        
-        // Make the camera shake when clicking/tapping on it.
-        this.bouncy.setInteractive();
-        this.bouncy.on( 'pointerdown', function( pointer ) {
-            this.scene.cameras.main.shake(500);
-            });
+        this.cameras.main.setBackgroundColor('rgba(0, 96, 192, 1.0)');
+        this.initLevel();
         
         // Add some text using a CSS style.
         // Center it in X, and position its top 15 pixels from the top of the world.
-        let style = { font: "25px Verdana", fill: "#9999ff", align: "center" };
-        let text = this.add.text( this.cameras.main.centerX, 15, "Hello, Matthew.", style );
+        let style = { font: "16px Verdana", fill: "#000000", align: "center" };
+        let text = this.add.text( this.cameras.main.centerX, 15, "Click the coins and avoid the red dots!", style );
         text.setOrigin( 0.5, 0.0 );
     }
     
     update() {
-        // Accelerate the 'logo' sprite towards the cursor,
-        // accelerating at 500 pixels/second and moving no faster than 500 pixels/second
-        // in X or Y.
-        // This function returns the rotation angle that makes it visually match its
-        // new trajectory.
-        this.bouncy.rotation = this.physics.accelerateToObject( this.bouncy, this.input.activePointer, 500, 500, 500 );
+        for (var i = 0; i < 10; i++) {
+            if (this.coins[i].y < 0) {
+                this.coins[i].setPosition(this.coins[i].x, this.coins[i].y + 600);
+            }
+            if (this.coins[i].x < 0) {
+                this.coins[i].setPosition(this.coins[i].x + 800);
+            }
+            if (this.coins[i].y > 600) {
+                this.coins[i].setPosition(this.coins[i].x, this.coins[i].y - 600);
+            }
+            if (this.coins[i].x > 800) {
+                this.coins[i].setPosition(this.coins[i].x - 800, this.coins[i].y);
+            }
+        }
+        for (var i = 0; i < this.hazards.length; i++) {
+            if (this.hazards[i].y < 0) {
+                this.hazards[i].setPosition(this.hazards[i].x, this.hazards[i].y + 600);
+            }
+            if (this.hazards[i].x < 0) {
+                this.hazards[i].setPosition(this.hazards[i].x + 800);
+            }
+            if (this.hazards[i].y > 600) {
+                this.hazards[i].setPosition(this.hazards[i].x, this.hazards[i].y - 600);
+            }
+            if (this.hazards[i].x > 800) {
+                this.hazards[i].setPosition(this.hazards[i].x - 800, this.hazards[i].y);
+            }
+        }
+    }
+
+    initLevel() {
+        for (var i = 0; i < 10; i++) {
+            this.coins[i] = this.physics.add.sprite( Phaser.Math.Between(0,800), Phaser.Math.Between(0,600), 'coin' );
+            this.vec = this.physics.velocityFromAngle(Phaser.Math.Between(0,360), 200);
+            this.coins[i].setVelocity(this.vec.x, this.vec.y);
+            this.coins[i].setInteractive();
+            this.coins[i].on( 'pointerdown', function( pointer ) {
+                if (!this.scene.lost) {
+                    this.setPosition(Phaser.Math.Between(0,800), Phaser.Math.Between(0,600));
+                    this.vec = this.scene.physics.velocityFromAngle(Phaser.Math.Between(0,360), 200);
+                    this.setVelocity(this.vec.x, this.vec.y);
+                    this.scene.addHazard();
+                }
+                });
+        }
+        for (var i = 0; i < 10; i++) {
+            this.hazards[i] = this.physics.add.sprite( Phaser.Math.Between(0,800), Phaser.Math.Between(0,600), 'hazard' );
+            this.vec = this.physics.velocityFromAngle(Phaser.Math.Between(0,360), 200);
+            this.hazards[i].setVelocity(this.vec.x, this.vec.y);
+            this.hazards[i].setInteractive();
+            this.hazards[i].on( 'pointerdown', function( pointer ) {
+                this.scene.endGame();
+                });
+        }
+    }
+
+    addHazard() {
+        this.score++;
+        this.next = this.hazards.length;
+        this.hazards[this.next] = this.physics.add.sprite( Phaser.Math.Between(0,800), Phaser.Math.Between(0,600), 'hazard' );
+        this.vec = this.physics.velocityFromAngle(Phaser.Math.Between(0,360), 200);
+        this.hazards[this.next].setVelocity(this.vec.x, this.vec.y);
+        this.hazards[this.next].setInteractive();
+        this.hazards[this.next].on( 'pointerdown', function( pointer ) {
+            this.scene.endGame();
+            });
+    }
+
+    endGame() {
+        if (!this.lost) {
+            this.lost = true;
+            let style = { font: "48px Verdana Bold", fill: "#000000", align: "center" };
+            let text = this.add.text( this.cameras.main.centerX, 15, "You got "+this.score+" points\nbefore clicking a red dot", style );
+            text.setOrigin( 0.5, -2.0 );
+        }
     }
 }
 
