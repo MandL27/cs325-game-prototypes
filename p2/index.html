@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Drag Race</title>
+<style>
+body
+{
+    color: #777;
+    font-family: "Avenir", Verdana, sans-serif;
+}
+#readme
+{
+    margin-top: 10px;
+}
+</style>
+</head>
+
+<body>
+<div id="game"></div>
+<div id="readme">
+<h2>Drag Race</h2>
+
+<ul>
+<li><strong>Originality:</strong>
+Unlike most other driving games, including top-down ones, Drag Race is controlled by moving the mouse pointer.
+</li>
+
+<li><strong>Technical Merit:</strong>
+The controls are all indirect - the car accelerates and steers by itself, trying to reach your cursor. Moving the cursor is the only way to navigate the course.
+</li>
+
+<li><strong>Prototype Postmortem:</strong>
+This prototype was surprisingly simple to make. Adding rigid, unmoving physics objects to Phaser was simpler than I expected, which should help me with more intricate games later.
+</li>
+
+<li><strong>Prototype Assets:</strong>
+All assets here were hand-drawn.
+</li>
+
+<li><strong>Prototype Closest Other Game:</strong>
+The nearest game to Drag Race is other top-down arcade racing games, such as ones on the Atari 2600. I repurposed most of the code from the Minimal Template, including making an object follow the cursor (albeit with little traction).
+</li>
+
+<li><strong>High Concept:</strong>
+Move your mouse to guide the car to victory.
+</li>
+
+<li><strong>Theme:</strong>
+Oasis
+</li>
+
+<li><strong>Mandated Variety:</strong>
+Indirect, deterministic, Competitor, racing
+</li>
+
+<li><strong>Prototype Goal:</strong>
+This was meant as an experiment to see how much fun "indirect" controls could be on a game focused on movement.
+</li>
+
+<li><strong>Player Experience Goals:</strong>
+I want players to experiment with ways to position their cursor to get the car to do laps as fast as possible. The controls should feel novel, but easy to get used to.
+</li>
+
+<li><strong>Gameplay:</strong>
+The core mechanic is making an object move without any direct input. With more time (such as iterations later in the semester), I would add a timer and more tracks to test more interesting layouts of objects, as well as possibly increasing traction.
+</li>
+
+<li><strong>Strategies:</strong>
+Figuring out what cursor positions result in the tightest turns is the key learning point for playing Drag Race. On an oval track like the one in this prototype, players may notice that holding the cursor in the middle can work with a distant enough "orbit", but other track layouts would thwart these sorts of tricks.
+</li>
+
+<li><strong>Story/Setting/Premise:</strong>
+The game is relatively abstract, but is meant to represent a time-attack race. Future iterations may add other cars as competition. 
+</li>
+
+<li><strong>Target Audience:</strong>
+This game is aimed at players who want a new spin on classic top-down racers.
+</li>
+
+<li><strong>Play Time:</strong>
+Completing three laps should take no longer than one minute.
+</li>
+
+</ul>
+</div>
+
+<!-- main.js must come at the end since it expects the HTML to have been created. -->
+<script src="js/main.js" type="module"></script>
+</body>
+</html>
