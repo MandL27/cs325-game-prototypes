@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Dot Matrix</title>
+<style>
+body
+{
+    color: #777;
+    font-family: "Avenir", Verdana, sans-serif;
+}
+#readme
+{
+    margin-top: 10px;
+}
+</style>
+</head>
+
+<body>
+<div id="game"></div>
+<div id="readme">
+<h2>Dot Matrix</h2>
+
+<ul>
+<li><strong>Originality:</strong>
+Unlike maze games that require the player to evade enemies while collecting items, Dot Matrix pits players against each other in a race to collect the most dots first.
+</li>
+
+<li><strong>Technical Merit:</strong>
+Phaser's physics engine is only used for detecting overlap. Depenetration and movement are handled entirely through my own code. Additionally, input is only polled when pieces are fully within grid cells, ensuring movement stays grid-aligned.
+</li>
+
+<li><strong>Prototype Postmortem:</strong>
+After the false start of trying to use a tilemap, I realized that my hacky approach from Drag Race (where I added a bunch of rectangular walls procedurally) was actually easier to implement, and I used it for Dot Matrix as well. The most challenging part was handling when two players collide with each other, as the assumption I make when depenetrating from walls (that the piece was grid-aligned exactly one tick ago) isn't always true with players hitting each other. Instead, I made the backtracking iterative, knocking both pieces backward until they regain grid alignment.
+</li>
+
+<li><strong>Prototype Assets:</strong>
+Did you make your prototype assets from scratch? Did you borrow them? Cite your sources here.
+<ul>
+<li>Everything was drawn by me</li>
+</ul>
+</li>
+
+<li><strong>Prototype Closest Other Game:</strong>
+Dot Matrix is fairly transparently based on maze games like Pac-Man, in which players must clear a maze of dots while avoiding four enemies that pursue them in unique ways.
+</li>
+
+<li><strong>High Concept:</strong>
+Race through a maze to get the most dots.
+</li>
+
+<li><strong>Prototype Goal:</strong>
+This prototype is a nearly-complete implementation of the game as I see it. The only features I can foresee myself adding are additional players, larger mazes, and/or enemies to pursue all players.
+</li>
+
+<li><strong>Player Experience Goals:</strong>
+Dot Matrix is designed to lead players to outwit and outmaneuver each other. Players cannot pass through each other, so one player can block a path another player needs to take to secure more dots in less time.
+</li>
+
+<li><strong>Gameplay:</strong>
+Input is entirely handled with a keyboard. Player one (blue) uses WSAD to move, while player two (orange) uses the arrow keys. Dots are collected as players pass over them, but scores are hidden until the end. If a player attempts to turn toward a wall or collides with the other player, they stop moving and must push a button to resume movement.
+</li>
+
+<li><strong>Strategies:</strong>
+The main strategies I saw arise from the physical prototype were camping the fastest route to remaining dots to cut off the other player, and using efficient routing to clear as many dots as possible in the early stages of the game, before players begin coming into contact with each other.
+</li>
+
+<li><strong>Story/Setting/Premise:</strong>
+The game is purely abstract and gameplay-oriented. Game pieces serve no purpose other than representing players and the objects they must collect.
+</li>
+
+<li><strong>Target Audience:</strong>
+Dot Matrix is aimed at players who want a competitive twist on classic maze game action.
+</li>
+
+<li><strong>Play Time:</strong>
+In its current state, the game takes no more than two minutes to play.
+</li>
+
+</ul>
+</div>
+
+<!-- main.js must come at the end since it expects the HTML to have been created. -->
+<script src="js/main.js" type="module"></script>
+</body>
+</html>
