@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Dot Matrix</title>
+<title>Dot Matrix 2</title>
 <style>
 body
 {
@@ -19,7 +19,7 @@ body
 <body>
 <div id="game"></div>
 <div id="readme">
-<h2>Dot Matrix</h2>
+<h2>Dot Matrix 2</h2>
 
 <ul>
 <li><strong>Originality:</strong>
@@ -31,7 +31,7 @@ Phaser's physics engine is only used for detecting overlap. Depenetration and mo
 </li>
 
 <li><strong>Prototype Postmortem:</strong>
-After the false start of trying to use a tilemap, I realized that my hacky approach from Drag Race (where I added a bunch of rectangular walls procedurally) was actually easier to implement, and I used it for Dot Matrix as well. The most challenging part was handling when two players collide with each other, as the assumption I make when depenetrating from walls (that the piece was grid-aligned exactly one tick ago) isn't always true with players hitting each other. Instead, I made the backtracking iterative, knocking both pieces backward until they regain grid alignment.
+After the false start of trying to use a tilemap, I realized that my hacky approach from Drag Race (where I added a bunch of rectangular walls procedurally) was actually easier to implement, and I used it for Dot Matrix as well.
 </li>
 
 <li><strong>Prototype Assets:</strong>
@@ -42,7 +42,7 @@ Did you make your prototype assets from scratch? Did you borrow them? Cite your 
 </li>
 
 <li><strong>Prototype Closest Other Game:</strong>
-Dot Matrix is fairly transparently based on maze games like Pac-Man, in which players must clear a maze of dots while avoiding four enemies that pursue them in unique ways.
+This iteration of Dot Matrix adds four-player support, a larger maze, and removes(!) player collision. When playtesting, I found that having player collision disabled was more fun than the alternative, which is reflected here.
 </li>
 
 <li><strong>High Concept:</strong>
@@ -50,19 +50,19 @@ Race through a maze to get the most dots.
 </li>
 
 <li><strong>Prototype Goal:</strong>
-This prototype is a nearly-complete implementation of the game as I see it. The only features I can foresee myself adding are additional players, larger mazes, and/or enemies to pursue all players.
+This prototype is a nearly-complete implementation of the game as I see it. I didn't add enemies, which are the only remaining thing I can think of to add in the future.
 </li>
 
 <li><strong>Player Experience Goals:</strong>
-Dot Matrix is designed to lead players to outwit and outmaneuver each other. Players cannot pass through each other, so one player can block a path another player needs to take to secure more dots in less time.
+Dot Matrix is designed to lead players to outwit and outmaneuver each other. While blockades aren't possible in this version, I feel this will place even more emphasis on efficient routing to clean out the maze with as little residue as possible.
 </li>
 
 <li><strong>Gameplay:</strong>
-Input is entirely handled with a keyboard. Player one (blue) uses WSAD to move, while player two (orange) uses the arrow keys. Dots are collected as players pass over them, but scores are hidden until the end. If a player attempts to turn toward a wall or collides with the other player, they stop moving and must push a button to resume movement.
+Input is entirely handled with a keyboard. Player one (blue) uses WSAD to move, while player two (orange) uses the arrow keys. Dots are collected as players pass over them, but scores are hidden until the end. If a player attempts to turn toward a wall, they stop moving and must push a button to resume movement.
 </li>
 
 <li><strong>Strategies:</strong>
-The main strategies I saw arise from the physical prototype were camping the fastest route to remaining dots to cut off the other player, and using efficient routing to clear as many dots as possible in the early stages of the game, before players begin coming into contact with each other.
+Camping the fastest route, which was prevalent during physical prototyping, is no longer possible, so efficient routing is more important than ever in avoiding giving your opponents any room to close the gap.
 </li>
 
 <li><strong>Story/Setting/Premise:</strong>
