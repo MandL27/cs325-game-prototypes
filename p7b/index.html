@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Power Maze</title>
+<style>
+body
+{
+    color: #777;
+    font-family: "Avenir", Verdana, sans-serif;
+}
+#readme
+{
+    margin-top: 10px;
+}
+</style>
+</head>
+
+<body>
+<div id="game"></div>
+<div id="readme">
+<h2>Power Maze</h2>
+
+<ul>
+<li><strong>Originality:</strong>
+While many bridge puzzle-type games exist, Power Maze adds a greater element of planning ahead by only allowing certain paths to be unlocked (and re-locked) from one side. Players are thus unable to move theoretically infinitely with a single bridge.
+</li>
+
+<li><strong>Technical Merit:</strong>
+I implemented a semi-formal object definition to track room data, like which sides have doors and whether locks are accessible from that side.
+</li>
+
+<li><strong>Prototype Postmortem:</strong>
+My biggest lesson from this prototype is that JS is an iffy-at-best language for OOP. In other languages (like C#), I could easily whip up a class for room data; however, here I used a more struct-like type that felt hacky at best. This may just be me being unfamiliar with JS, though.
+</li>
+
+<li><strong>Prototype Assets:</strong>
+Did you make your prototype assets from scratch? Did you borrow them? Cite your sources here.
+<ul>
+<li>All graphics by me</li>
+</ul>
+</li>
+
+<li><strong>Prototype Closest Other Game:</strong>
+While I was unable to add multiple levels, this iteration of Power Maze features a much larger (and harder!) maze introducing more advanced techniques.
+</li>
+
+<li><strong>High Concept:</strong>
+Use keys and locks (some one-sided, some dual-sided) to navigate through a small maze.
+</li>
+
+<li><strong>Prototype Goal:</strong>
+As this prototype stands now, it represents a single level in the hypothetical finished game. It also covers many of the techniques I would want to introduce to players.
+</li>
+
+<li><strong>Player Experience Goals:</strong>
+I want this game to force players to think through the scenario before them. Like many puzzle games, Power Maze caters to mind-oriented gamers.
+</li>
+
+<li><strong>Gameplay:</strong>
+The gameplay is simple: use the arrow keys to move between rooms and WASD to insert or remove keys. The objective is to reach the checkered room in the corner opposite where you start.
+</li>
+
+<li><strong>Strategies:</strong>
+Long-term planning and recognizing necessary conditions are the order of the day in Power Maze. Being able to think through a plan is the key to success.
+</li>
+
+<li><strong>Story/Setting/Premise:</strong>
+This whole game is abstract with no real narrative component, though players are free to interpret it as a prison break or other type of escape scenario.
+</li>
+
+<li><strong>Target Audience:</strong>
+Puzzle fans who want a new take on bridge puzzle games.
+</li>
+
+<li><strong>Play Time:</strong>
+The game should take no longer than five minutes to play.
+</li>
+
+</ul>
+</div>
+
+<!-- main.js must come at the end since it expects the HTML to have been created. -->
+<script src="js/main.js" type="module"></script>
+</body>
+</html>
